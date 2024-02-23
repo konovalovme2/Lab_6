@@ -68,4 +68,111 @@ public class CollectionsDemoTest {
         Assert.assertNotEquals(CollectionsDemo.maxAgePeople(a), a);
         Assert.assertEquals(CollectionsDemo.maxAgePeople(c), c);
     }
+
+    //6 задание
+
+    @Test
+    public void peopleSetList() {
+        Map<Integer, Human> one = new LinkedHashMap<>();
+        one.put(1, new Student("Arkadiy", "Petrov", "Valentinovich", 25, "FCTK"));
+        one.put(24,  new Human("Oleg", "Petrov", "Ivanovich", 18));
+        one.put(15,  new Human());
+
+        Set<Integer> oneKeys = new HashSet<>();
+        Collections.addAll(oneKeys, 1, 325, 23, 15, 34, 64);
+
+        Set<Integer> twoKeys = new HashSet<>();
+
+        Set<Human>answerOne = new HashSet<>();
+        Collections.addAll(answerOne, new Student("Arkadiy", "Petrov", "Valentinovich", 25, "FCTK"), new Human());
+        Assert.assertEquals(answerOne, CollectionsDemo.peopleSetList(one,oneKeys));
+        Assert.assertEquals(new HashSet<Human>(), CollectionsDemo.peopleSetList(one,twoKeys));
+    }
+
+    @Test
+    public void getPeopleOlder18() {
+        Map<Integer, Human> one = new LinkedHashMap<>();
+        one.put(1, new Student("Arkadiy", "Petrov", "Valentinovich", 25, "FCTK"));
+        one.put(24,  new Human("Oleg", "Petrov", "Ivanovich", 46));
+        one.put(15,  new Human());
+
+        Map<Integer, Human> two = new LinkedHashMap<>();
+        two.put(1, new Student("Arkadiy", "Petrov", "Valentinovich", 5, "FCTK"));
+        two.put(24,  new Human("Oleg", "Petrov", "Ivanovich", 5));
+        two.put(15,  new Human());
+
+        ArrayList<Integer> answerOne = new ArrayList<>(2);
+        Collections.addAll(answerOne, 1, 24);
+
+        Assert.assertEquals(answerOne, CollectionsDemo.getPeopleOlder18(one));
+        Assert.assertEquals(new ArrayList<Integer>(), CollectionsDemo.getPeopleOlder18(two));
+    }
+
+    @Test
+    public void getMapOfAges() {
+        Map<Integer, Human> one = new LinkedHashMap<>();
+        one.put(1, new Student("Arkadiy", "Petrov", "Valentinovich", 25, "FCTK"));
+        one.put(24,  new Human("Oleg", "Petrov", "Ivanovich", 46));
+        one.put(15,  new Human());
+
+        Map<Integer, Human> two = new LinkedHashMap<>();
+
+        Map<Integer,Integer> answerOne = new LinkedHashMap<>();
+        answerOne.put(1,25);
+        answerOne.put(24,46);
+        answerOne.put(15,0);
+
+        Assert.assertEquals(answerOne,CollectionsDemo.getMapOfAges(one));
+        Assert.assertEquals(new LinkedHashMap<Integer,Integer>(),CollectionsDemo.getMapOfAges(two));
+    }
+
+    @Test
+    public void getAgesToListPeople() {
+        Set<Human> one = new LinkedHashSet<>();
+        Collections.addAll(one,new Student("Arkadiy", "Petrov", "Valentinovich", 25, "FCTK"),new Human("Oleg", "Petrov", "Ivanovich", 25),new Human(),new Student("Hello","Ok","World",0,"FCTK"),new Human("f","f","f", 25));
+
+        Set<Human> two = new LinkedHashSet<>();
+
+        Map<Integer, ArrayList<Human>> answerOne = new LinkedHashMap<>();
+        ArrayList<Human> anOneOne = new ArrayList<>();
+        ArrayList<Human> anOneTwo = new ArrayList<>();
+        Collections.addAll(anOneOne,new Student("Arkadiy", "Petrov", "Valentinovich", 25, "FCTK"),new Human("Oleg", "Petrov", "Ivanovich", 25),new Human("f","f","f", 25));
+        Collections.addAll(anOneTwo,new Human(),new Student("Hello","Ok","World",0,"FCTK"));
+        answerOne.put(25,anOneOne);
+        answerOne.put(0,anOneTwo);
+
+        Assert.assertEquals(answerOne,CollectionsDemo.getAgesToListPeople(one));
+        Assert.assertEquals(new LinkedHashMap<Integer, ArrayList<Human>>(),CollectionsDemo.getAgesToListPeople(two));
+    }
+
+    @Test
+    public void getAgesToLetterToListPeople() {
+        Set<Human> one = new LinkedHashSet<>();
+        Collections.addAll(one,new Student("Arkadiy", "Petrov", "Valentinovich", 25, "FCTK"),new Human("Oleg", "Petrov", "Ivanovich", 25),new Human(),new Student("Hello","Ok","World",25,"FCTK"),new Human("F","F","F", 25));
+
+        Set<Human> two = new LinkedHashSet<>();
+
+        Map<Integer,Map<Character,ArrayList<Human>>> answerOne = new LinkedHashMap<>();
+        Map<Character,ArrayList<Human>> a = new LinkedHashMap<>();
+        Map<Character,ArrayList<Human>> a1 = new LinkedHashMap<>();
+        ArrayList<Human> b = new ArrayList<>();
+        Collections.addAll(b,new Student("Arkadiy", "Petrov", "Valentinovich", 25, "FCTK"),new Human("Oleg", "Petrov", "Ivanovich", 25));
+        ArrayList<Human> c = new ArrayList<>();
+        Collections.addAll(c,new Human());
+        ArrayList<Human> d = new ArrayList<>();
+        Collections.addAll(d,new Student("Hello","Ok","World",25,"FCTK"));
+        ArrayList<Human> e = new ArrayList<>();
+        Collections.addAll(e,new Human("F","F","F", 25));
+
+        a.put('P', b);
+        a.put('O', d);
+        a.put('F', e);
+        a1.put('I', c);
+
+        answerOne.put(25,a);
+        answerOne.put(0,a1);
+
+        Assert.assertEquals(answerOne,CollectionsDemo.getAgesToLetterToListPeople(one));
+        Assert.assertEquals(new LinkedHashMap<Integer,Map<Character,ArrayList<Human>>>(),CollectionsDemo.getAgesToLetterToListPeople(two));
+    }
 }
