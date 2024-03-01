@@ -66,7 +66,26 @@ public class CollectionsDemo {
         return peopleCopy;
     }
 
-    //6 задание
+    public static <T extends Human> ArrayList <T> setToList (Set<T> setOfPeople){
+        ArrayList<T> listOfPeople = new ArrayList<>();
+        HumanComporator comp = new HumanComporator();
+
+        for (T item : setOfPeople) {
+            int i = 0;
+            for (int j = 0; j < listOfPeople.size(); j++) {
+                if (comp.compare(listOfPeople.get(i), item) > 0) {
+                    i = j;
+                    break;
+                } else {
+                    i = listOfPeople.size();
+                }
+            }
+
+            listOfPeople.add(i, item);
+        }
+
+        return listOfPeople;
+    }
 
     public static Set<Human> peopleSetList(Map<Integer,Human> people, Set<Integer> keys){
         Set<Human> peopleSet = new HashSet<>();
@@ -132,7 +151,7 @@ public class CollectionsDemo {
                 int i=0;
 
                 for (int j = 0; j < oneAge.size(); j++) {
-                    if(comp.compare(oneAge.get(i),person) > 0){
+                    if(comp.compare(oneAge.get(i),person) < 0){
                         i = j;
                         break;
                     }

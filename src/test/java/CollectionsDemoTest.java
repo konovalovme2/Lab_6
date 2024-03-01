@@ -148,7 +148,7 @@ public class CollectionsDemoTest {
     @Test
     public void getAgesToLetterToListPeople() {
         Set<Human> one = new LinkedHashSet<>();
-        Collections.addAll(one,new Student("Arkadiy", "Petrov", "Valentinovich", 25, "FCTK"),new Human("Oleg", "Petrov", "Ivanovich", 25),new Human(),new Student("Hello","Ok","World",25,"FCTK"),new Human("F","F","F", 25));
+        Collections.addAll(one,new Student("Arkadiy", "Petrov", "Valentinovich", 25, "FCTK"),new Human("Arkadiy", "Pktrov", "Valentinovich", 25),new Human(),new Student("Hello","Ok","World",25,"FCTK"),new Human("F","F","F", 25));
 
         Set<Human> two = new LinkedHashSet<>();
 
@@ -156,7 +156,7 @@ public class CollectionsDemoTest {
         Map<Character,ArrayList<Human>> a = new LinkedHashMap<>();
         Map<Character,ArrayList<Human>> a1 = new LinkedHashMap<>();
         ArrayList<Human> b = new ArrayList<>();
-        Collections.addAll(b,new Student("Arkadiy", "Petrov", "Valentinovich", 25, "FCTK"),new Human("Oleg", "Petrov", "Ivanovich", 25));
+        Collections.addAll(b,new Student("Arkadiy", "Pktrov", "Valentinovich", 25, "FCTK"),new Human("Arkadiy", "Petrov", "Valentinovich", 25));
         ArrayList<Human> c = new ArrayList<>();
         Collections.addAll(c,new Human());
         ArrayList<Human> d = new ArrayList<>();
@@ -174,5 +174,21 @@ public class CollectionsDemoTest {
 
         Assert.assertEquals(answerOne,CollectionsDemo.getAgesToLetterToListPeople(one));
         Assert.assertEquals(new LinkedHashMap<Integer,Map<Character,ArrayList<Human>>>(),CollectionsDemo.getAgesToLetterToListPeople(two));
+    }
+
+    @Test
+    public void setToList() {
+        Set<Student> one = new HashSet<>();
+        one.add(new Student("Arkadiy", "Petrov", "Valentinovich", 25, "FCTK"));
+        one.add(new Student("Arkadiy", "Pktrov", "Valentinovich", 25,""));
+        one.add(new Student());
+        one.add(new Student("F","F","F", 25,""));
+        Set<Human> two = new HashSet<>();
+
+        ArrayList<Human> oneEx = new ArrayList<>();
+        Collections.addAll(oneEx, new Student("F","F","F", 25,""), new Student(),new Student("Arkadiy", "Petrov", "Valentinovich", 25, "FCTK"),new Student("Arkadiy", "Pktrov", "Valentinovich", 25,""));
+
+        Assert.assertEquals(oneEx,CollectionsDemo.setToList(one));
+        Assert.assertEquals(new ArrayList<Human>(),CollectionsDemo.setToList(two));
     }
 }
