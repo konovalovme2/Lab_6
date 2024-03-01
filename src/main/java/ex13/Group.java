@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class Group {
-    int id;
-    int[] arr;
+    private int id;
+    private  int[] arr;
 
     public Group() {
     }

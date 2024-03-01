@@ -145,6 +145,7 @@ public class CollectionsDemoTest {
         Assert.assertEquals(new LinkedHashMap<Integer, ArrayList<Human>>(),CollectionsDemo.getAgesToListPeople(two));
     }
 
+    //доделать тесты
     @Test
     public void getAgesToLetterToListPeople() {
         Set<Human> one = new LinkedHashSet<>();
@@ -156,7 +157,7 @@ public class CollectionsDemoTest {
         Map<Character,ArrayList<Human>> a = new LinkedHashMap<>();
         Map<Character,ArrayList<Human>> a1 = new LinkedHashMap<>();
         ArrayList<Human> b = new ArrayList<>();
-        Collections.addAll(b,new Student("Arkadiy", "Pktrov", "Valentinovich", 25, "FCTK"),new Human("Arkadiy", "Petrov", "Valentinovich", 25));
+        Collections.addAll(b,new Student("Alexey", "Petrov", "Valentinovich", 25, "FCTK"),new Human("Arkadiy", "Petrov", "Valentinovich", 25));
         ArrayList<Human> c = new ArrayList<>();
         Collections.addAll(c,new Human());
         ArrayList<Human> d = new ArrayList<>();
