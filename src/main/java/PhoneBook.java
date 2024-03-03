@@ -55,7 +55,7 @@ public class PhoneBook {
                 return phoneString.getKey();
             }
         }
-        throw new IndexOutOfBoundsException();
+        return null;
     }
 
     public PhoneBook getSearchedPhoneBook(String begin){

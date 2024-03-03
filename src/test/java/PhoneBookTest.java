@@ -2,6 +2,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class PhoneBookTest {
@@ -26,13 +27,29 @@ public class PhoneBookTest {
         Assert.assertEquals(one,two);
 
         one.addAPhone(new Human(), "274387123");
+        one.addAPhone(new Human(), "911");
+        one.addAPhone(new Human(), "01");
+        one.addAPhone(new Human(), "02");
         Assert.assertNotEquals(one,two);
 
         two.addAPhone(new Human(), "274387123");
+        two.addAPhone(new Human(), "911");
+        two.addAPhone(new Human(), "01");
+        two.addAPhone(new Human(), "02");
         Assert.assertEquals(one,two);
 
         one.deleteAPhone("274387123");
         Assert.assertNotEquals(one,two);
+
+        one.deleteAPhone("911");
+        one.deleteAPhone("01");
+        one.deleteAPhone("02");
+
+        two.deleteAPhone("274387123");
+        two.deleteAPhone("911");
+        two.deleteAPhone("01");
+        two.deleteAPhone("02");
+        Assert.assertEquals(one,two);
 
         try{
             one.deleteAPhone("274387123");
@@ -45,23 +62,35 @@ public class PhoneBookTest {
     @Test
     public void getAPhone() {
         PhoneBook one = new PhoneBook();
+        PhoneBook two = new PhoneBook();
         Human person = new Human();
 
         one.addAPhone(person, "274387123");
+        one.addAPhone(person, "01");
+        one.addAPhone(person, "02");
+        one.addAPhone(person, "03");
         ArrayList<String> a = new ArrayList<>();
-        a.add("274387123");
+        Collections.addAll(a,"274387123","01","02","03");
 
         Assert.assertEquals(a, one.getAPhone(person));
+        Assert.assertNull(two.getAPhone(new Human("F", "F", "F", 13)));
     }
 
     @Test
     public void getAPerson() {
         PhoneBook one = new PhoneBook();
+        PhoneBook two = new PhoneBook();
         Human person = new Human();
+        Human person2 = new Human();
 
         one.addAPhone(person, "274387123");
+        one.addAPhone(person, "01");
+        one.addAPhone(person2, "01");
 
         Assert.assertEquals(person, one.getAPerson("274387123"));
+        Assert.assertEquals(person, one.getAPerson("01"));
+        Assert.assertNull(two.getAPerson("01"));
+        Assert.assertEquals(person2, one.getAPerson("01"));
     }
 
     @Test

@@ -49,7 +49,7 @@ public class CollectionsDemo {
     }
 
     public static ArrayList<Human> maxAgePeople(ArrayList<Human> people) {
-        ArrayList<Human> peopleCopy = new ArrayList();
+        ArrayList<Human> peopleCopy = new ArrayList<>();
         int maxAge = 0;
         for(Human one: people){
             if (one.getAge() > maxAge) {
@@ -73,7 +73,7 @@ public class CollectionsDemo {
         for (T item : setOfPeople) {
             int i = 0;
             for (int j = 0; j < listOfPeople.size(); j++) {
-                if (comp.compare(listOfPeople.get(i), item) > 0) {
+                if (comp.compare(listOfPeople.get(j), item) > 0) {
                     i = j;
                     break;
                 } else {
@@ -151,7 +151,7 @@ public class CollectionsDemo {
                 int i=0;
 
                 for (int j = 0; j < oneAge.size(); j++) {
-                    if(comp.compare(oneAge.get(i),person) < 0){
+                    if(comp.compare(oneAge.get(j),person) < 0){
                         i = j;
                         break;
                     }
