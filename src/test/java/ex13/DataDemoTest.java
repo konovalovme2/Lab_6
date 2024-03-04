@@ -12,10 +12,13 @@ public class DataDemoTest {
 
     @Test
     public void getAll() {
-        Data data = new Data ("Array", new Group(12, 1, 2, 3), new Group(15, 6, 0, 2), new Group(322, 1, 56, 42));
+        Data data1 = new Data ("Array", new Group(12, 1, 2, 3), new Group(15, 6, 0, 2), new Group(322, 1, 56, 42));
+        Data data2 = new Data ("Array", new Group(), new Group());
 
         ArrayList<Integer>  a = new ArrayList<>();
         Collections.addAll(a,1,2,3,6,0,2,1,56,42);
-        Assert.assertEquals(DataDemo.getAll(data), a);
+        Assert.assertEquals(DataDemo.getAll(data1), a);
+        Assert.assertEquals(DataDemo.getAll(data2), new ArrayList<>());
+        Assert.assertEquals(DataDemo.getAll(new Data()), new ArrayList<>());
     }
 }

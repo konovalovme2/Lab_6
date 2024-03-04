@@ -16,16 +16,23 @@ public class DataIterator implements Iterator<Integer> {
 
     @Override
     public boolean hasNext() {
-        if(counterOne > data.getLength() || counterTwo > data.getArr()[data.getLength()-1].getLength()){
-            return false;
-        }
-        return true;
+        return counterOne < data.getLength();
     }
 
     @Override
     public Integer next() {
-        counterOne++;
-        counterTwo++;
-        return data.getArr()[counterOne].getArr()[counterTwo];
+        if(data.getArr()[counterOne].getLength() != 0){
+            int counter = data.getArr()[counterOne].getArr()[counterTwo];
+            if(counterTwo >= data.getArr()[counterOne].getLength() - 1){
+                counterOne++;
+                counterTwo = -1;
+            }
+            counterTwo++;
+            return counter;
+        }
+        else{
+            counterOne++;
+            return null;
+        }
     }
 }

@@ -6,6 +6,10 @@ public class Data implements Iterable<Integer> {
     private String name;
     private Group[] arr;
 
+    public Data() {
+        this.name = "";
+        this.arr = new Group[0];
+    }
     public Data(String name, Group ... arr) {
         this.name = name;
         this.arr = arr;

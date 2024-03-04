@@ -8,6 +8,8 @@ public class Group {
     private  int[] arr;
 
     public Group() {
+        this.id = 0;
+        this.arr = new int[0];
     }
     public Group(int id, int... arr) {
         this.id = id;
